@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form"
 
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
@@ -68,23 +68,27 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function BeanBagBrewForm() {
-    const classes = useStyles();
-    const [process, setProcess] = React.useState("Process1");
-		const [brewMethod, setBrewMethod] = React.useState("method1");
+	const classes = useStyles();
+	const [process, setProcess] = React.useState("Process1");
+	const [brewMethod, setBrewMethod] = React.useState("method1");
+		
+	//* Form Handling
+	const { register, handleSubmit } = useForm();
+	const onSubmit = (data: any) => {
+		console.log(JSON.stringify(data, null, 4));
+	};
 	
-		//* Form Handling
-		const { register, handleSubmit } = useForm();
-		const onSubmit = (data: any) => {
-			console.log(JSON.stringify(data, null, 4));
-		};
+	useEffect(() => {
+		register({ name: "beanProcess" });
+	}, [register]);
 
-    const changeProcess = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setProcess(event.target.value);
-    };
+	const changeProcess = (event: React.ChangeEvent<HTMLInputElement>) => {
+			setProcess(event.target.value);
+	};
     
-    const changeBrewMethod = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setBrewMethod(event.target.value);
-    };
+	const changeBrewMethod = (event: React.ChangeEvent<HTMLInputElement>) => {
+			setBrewMethod(event.target.value);
+	};
 
   return (
     <div className={classes.root}>
@@ -118,7 +122,9 @@ export default function BeanBagBrewForm() {
                   type="date"
 									InputLabelProps={{ shrink: true }}
 									inputRef={register}
-                />
+								/>
+								
+								{/** TODO: Register this field */}
 								<TextField
 									name="beanProcess"
                   id="standard-basic-process-select"
@@ -133,7 +139,9 @@ export default function BeanBagBrewForm() {
                       {option.label}
                     </MenuItem>
                   ))}
-                </TextField>
+								</TextField>
+								
+								{/** TODO: Register this field */}
                 <Typography id="discrete-slider">Roast Level</Typography>
 								<Slider
 									defaultValue={0}
@@ -193,7 +201,9 @@ export default function BeanBagBrewForm() {
                   type="date"
 									InputLabelProps={{ shrink: true }}
 									inputRef={register}
-                />
+								/>
+								
+								{/** TODO: Register this field */}
 								<TextField
 									name="brewMethod"
                   id="standard-basic-brew-method-select"
