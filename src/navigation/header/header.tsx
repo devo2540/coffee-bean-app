@@ -5,7 +5,7 @@ import ToolBar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
-// import MenuRoundedIcon from '@material-ui/core/MenuRounded'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
@@ -26,20 +26,29 @@ export default function ButtonAppBar() {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
-            <AppBar position="static">
-                <ToolBar>
-                    <IconButton edge="start" className={classes.menuButton} aria-label="menu">
-                        
-                    </IconButton>
+      <div className={classes.root}>
+        <AppBar position="static">
+          <ToolBar>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              aria-label="menu"
+            ></IconButton>
 
-                    <Typography variant="h6" className={classes.title}>
-                        Coffee Bean App
-                    </Typography>
+            <Typography variant="h6" className={classes.title}>
+                        <Link
+                            style={{
+                                textDecoration: 'none',
+                                color: '#fff'
+                            }}
+                            to="/">
+                            Coffee Bean App
+                        </Link>
+            </Typography>
 
-                    <Button color="inherit">Login</Button>
-                </ToolBar>
-            </AppBar>
-        </div>
+            <Button color="inherit">Login</Button>
+          </ToolBar>
+        </AppBar>
+      </div>
     );
 }
