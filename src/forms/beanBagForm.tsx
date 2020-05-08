@@ -11,6 +11,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Slider from "@material-ui/core/Slider";
 import Button from "@material-ui/core/Button"
 
+import API, { MUTATION_NEW_BEAN } from "../api/index"
+
 //* Placeholder for bean washing processes
 const processes = [
   {
@@ -24,22 +26,6 @@ const processes = [
   {
     value: "Process3",
     label: "Process3"
-  }
-];
-
-//* Placeholder for brewing methods
-const brewMethods = [
-  {
-    value: "method1",
-    label: "method1"
-  },
-  {
-    value: "method2",
-    label: "method2"
-  },
-  {
-    value: "method3",
-    label: "method3"
   }
 ];
 
@@ -70,12 +56,14 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function BeanBagBrewForm() {
 	const classes = useStyles();
 	const [process, setProcess] = React.useState("Process1");
-	const [brewMethod, setBrewMethod] = React.useState("method1");
+
 		
 	//* Form Handling
 	const { register, handleSubmit } = useForm();
 	const onSubmit = (data: any) => {
-		console.log(JSON.stringify(data, null, 4));
+    console.log(JSON.stringify(data, null, 4));
+    API.post(MUTATION_NEW_BEAN,data)
+     .then(data => data)
 	};
 	
 	useEffect(() => {
@@ -84,10 +72,6 @@ export default function BeanBagBrewForm() {
 
 	const changeProcess = (event: React.ChangeEvent<HTMLInputElement>) => {
 			setProcess(event.target.value);
-	};
-    
-	const changeBrewMethod = (event: React.ChangeEvent<HTMLInputElement>) => {
-			setBrewMethod(event.target.value);
 	};
 
   return (
@@ -179,62 +163,6 @@ export default function BeanBagBrewForm() {
 									name="roasterNotes"
                   id="standard-basic-roaster-notes"
                   label="Roaster Notes"
-                  multiline
-                  rows={4}
-									rowsMax={4}
-									inputRef={register}
-                />
-              </Paper>
-            </Grid>
-
-            {/** The Brew */}
-            <Grid item xs={12} md={4}>
-              <Paper className={classes.paper} elevation={15}>
-                <Typography className={classes.centered} variant="h4">
-                  The Brew
-                </Typography>
-
-								<TextField
-									name="brewDate"
-                  id="standard-basic-brew-date"
-                  label="Brew Date"
-                  type="date"
-									InputLabelProps={{ shrink: true }}
-									inputRef={register}
-								/>
-								
-								{/** TODO: Register this field */}
-								<TextField
-									name="brewMethod"
-                  id="standard-basic-brew-method-select"
-                  select
-                  label="Brew Method"
-                  value={brewMethod}
-									onChange={changeBrewMethod}
-									inputRef={register}
-                >
-                  {brewMethods.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-								<TextField
-									name="brewBeanWeight"
-                  id="standard-basic-bean-weight"
-									label="Bean Weight"
-									inputRef={register}
-                />
-								<TextField
-									name="brewWaterWeight"
-                  id="standard-basic-water-weight"
-									label="Water Weight"
-									inputRef={register}
-                />
-								<TextField
-									name="brewFlavorProfile"
-                  id="standard-basic-flavor-profile"
-                  label="Flavor Profile"
                   multiline
                   rows={4}
 									rowsMax={4}
