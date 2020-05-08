@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 
 import Header from './navigation/header/header'
-import BeanBagBrewForm from './forms/beanBagBrewForm'
+import BeanBagBrewForm from './forms/beanBagForm'
 
 
 function App() {
