@@ -2,13 +2,14 @@ import React from 'react';
 import './App.scss';
 
 import Header from './navigation/header/header'
-import FullWidthGrid from './layout/grid'
+import BeanBagBrewForm from './forms/beanBagBrewForm'
+
 
 function App() {
   return (
     <>
     <Header />
-    <FullWidthGrid />
+    <BeanBagBrewForm />
     </>
   );
 }
