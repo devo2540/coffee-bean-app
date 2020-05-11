@@ -1,10 +1,12 @@
 import React from 'react'
-import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+
+import { navigate, CREATE_BEAN_BAG } from './routes/actions'
+import BeanBagBrewForm from './forms/beanBagForm';
 
 
 const useStyles = makeStyles((theme: Theme) => 
@@ -27,11 +29,13 @@ export default function Homepage() {
             You haven't added any beans yet!
           </Typography>
 
-          <Link to="/beanBagForm">
-            <Button variant="contained" color="primary">
-                Add a Bean!
-            </Button>
-          </Link>
+          <Button
+            color="primary"
+            variant="contained"
+            href={CREATE_BEAN_BAG}
+          >
+            Add a Bean
+          </Button>
         </Grid>
       </Grid>
     </Box>

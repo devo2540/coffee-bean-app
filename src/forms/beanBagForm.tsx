@@ -13,6 +13,8 @@ import Button from "@material-ui/core/Button"
 
 import API, { MUTATION_NEW_BEAN } from "../api/index"
 
+import { navigate, SHOW_BEAN_BAG } from "../routes/actions"
+
 //* Placeholder for bean washing processes
 const processes = [
   {
@@ -55,15 +57,15 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function BeanBagBrewForm() {
 	const classes = useStyles();
-	const [process, setProcess] = React.useState("Process1");
-
+  const [process, setProcess] = React.useState("Process1");
 		
 	//* Form Handling
 	const { register, handleSubmit } = useForm();
 	const onSubmit = (data: any) => {
     console.log(JSON.stringify(data, null, 4));
     API.post(MUTATION_NEW_BEAN,data)
-     .then(data => data)
+      .then(data => navigate(SHOW_BEAN_BAG))
+      .then(data => data)    
 	};
 	
 	useEffect(() => {

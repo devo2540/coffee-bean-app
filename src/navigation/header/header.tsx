@@ -36,14 +36,7 @@ export default function ButtonAppBar() {
             ></IconButton>
 
             <Typography variant="h6" className={classes.title}>
-                        <Link
-                            style={{
-                                textDecoration: 'none',
-                                color: '#fff'
-                            }}
-                            to="/">
-                            Coffee Bean App
-                        </Link>
+              Coffee Bean App
             </Typography>
 
             <Button color="inherit">Login</Button>

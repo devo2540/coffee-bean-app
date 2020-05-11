@@ -1,28 +1,20 @@
 import React from 'react';
 import './App.scss';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from "react-router-dom"
 
-import Home from './Home'
+import { useRoutes } from 'hookrouter'
+import Routes from './routes/routes'
+
 import Header from './navigation/header/header'
-import BeanBagForm from './forms/beanBagForm'
-import BrewForm from './forms/brewForm'
-
 
 function App() {
+  const routeResult = useRoutes(Routes)
+
   return (
-    <Router>
+    <>
       <Header />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/beanBagForm" component={BeanBagForm} />
-        <Route path="/brewForm" component={BrewForm} />
-      </Switch>
-    </Router>
-  );
+      {routeResult}
+    </>
+  )
 }
 
 export default App;
